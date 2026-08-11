@@ -3,3 +3,4 @@ storage/logs/
 tests
 node_modules
 README.md
+Dockerfile
