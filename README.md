@@ -78,3 +78,21 @@ docker build --no-cache --progress=plain -t app_api_rest .
 --no-cache: Le dice a Docker que no use la caché de capas de imágenes anteriores al construir la nueva imagen. Esto asegura que todas las instrucciones del Dockerfile se ejecuten desde cero, lo que puede ser útil si deseas asegurarte de que estás obteniendo las versiones más recientes de las dependencias o si has realizado cambios en el Dockerfile y deseas que se reflejen en la nueva imagen.
 
 --progress=plain: Le dice a Docker que muestre la salida de construcción en un formato más detallado y legible. Esto puede ser útil para depurar problemas durante la construcción de la imagen, ya que proporciona información más clara sobre cada paso del proceso.
+
+
+composer install \
+    --no-dev \
+    --no-interaction \
+    --prefer-dist \
+    --optimize-autoloader \
+    --no-scripts
+
+--no-dev: Le dice a Composer que no instale las dependencias de desarrollo definidas en el archivo composer.json. Esto es útil para entornos de producción donde no necesitas herramientas de desarrollo, como pruebas o depuración.
+
+--no-interaction: Le dice a Composer que no solicite ninguna entrada del usuario durante la instalación de dependencias. Esto es útil para automatizar el proceso de instalación sin intervención manual.
+
+--prefer-dist: Le dice a Composer que prefiera instalar paquetes desde el repositorio de distribución en lugar de desde el repositorio de desarrollo.
+
+--optimize-autoloader: Le dice a Composer que optimice el autoloader para mejorar el rendimiento.
+
+--no-scripts: Le dice a Composer que no ejecute los scripts definidos en el archivo composer.json durante la instalación de dependencias.
