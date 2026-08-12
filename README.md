@@ -99,3 +99,5 @@ composer install \
 
 
 docker run -d --name api-rest -p 8000:8000 app_api_rest
+
+docker compose up -d --build  --force-recreate app

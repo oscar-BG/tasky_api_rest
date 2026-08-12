@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment:
+      APP_KEY: base64:0PcTeiciTbnTIhKMoQnN6K0/MxnzQBAN31ksx4rJ0hA=
+      DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
       DB_DATABASE: tasky
@@ -13,8 +15,10 @@ services:
       DB_PASSWORD: 8UISJlks
     ports:
       - "8000:8000"
+    entrypoint: ["entrypoint"]
     depends_on:
-      - db
+      db:
+        condition: service_healthy
   db:
     container_name: tasky_db
     image: mysql:8.4
@@ -24,6 +28,12 @@ services:
       MYSQL_DATABASE: tasky
       MYSQL_USER: morales
       MYSQL_PASSWORD: 8UISJlks
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-umorales", "-p8UISJlks"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
     volumes:
       - db_data:/var/lib/mysql
 volumes:

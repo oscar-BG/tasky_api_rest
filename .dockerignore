@@ -8,6 +8,7 @@ Dockerfile
 .agents
 .dockerignore
 .env.example
+.env
 .git
 .gitatributes
 .gitignore

@@ -24,17 +24,15 @@ RUN npm run build
 
 FROM php:8.3.33-fpm AS production
 
-ENV DB_CONNECTION=mysql
-ENV DB_HOST=
-ENV DB_PORT=3306
-ENV DB_DATABASE=api_rest
-ENV DB_USERNAME=root
-ENV DB_PASSWORD=
+RUN docker-php-ext-install pdo_mysql
 
 WORKDIR /usr/src/app
 COPY --from=composer /app ./
 COPY --from=frontend /app/public/build ./public/build
-# RUN touch database/database.sqlite
-# RUN php artisan migrate --force
+
+COPY docker/laravel/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
+
+
 EXPOSE 8000
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
