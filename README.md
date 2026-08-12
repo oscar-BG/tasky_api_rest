@@ -61,7 +61,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 docker build -t app_api_rest .
 
-docker run -d -p 8080:80 app_api_rest
+docker run -d -p 8000:8000 app_api_rest
 
 ### Verificar la instalacion de composer y php
 docker run --rm app_api_rest composer --version
@@ -96,3 +96,6 @@ composer install \
 --optimize-autoloader: Le dice a Composer que optimice el autoloader para mejorar el rendimiento.
 
 --no-scripts: Le dice a Composer que no ejecute los scripts definidos en el archivo composer.json durante la instalación de dependencias.
+
+
+docker run -d --name api-rest -p 8000:8000 app_api_rest

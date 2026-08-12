@@ -4,3 +4,10 @@ tests
 node_modules
 README.md
 Dockerfile
+
+.agents
+.dockerignore
+.env.example
+.git
+.gitatributes
+.gitignore
