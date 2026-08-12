@@ -1,0 +1,30 @@
+services:
+  app:
+    container_name: tasky_api_rest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: tasky
+      DB_USERNAME: morales
+      DB_PASSWORD: 8UISJlks
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    container_name: tasky_db
+    image: mysql:8.4
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: UhytLKB
+      MYSQL_DATABASE: tasky
+      MYSQL_USER: morales
+      MYSQL_PASSWORD: 8UISJlks
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
